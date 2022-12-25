@@ -1,9 +1,11 @@
-# Terraform Provider Hashicups
+Original: https://github.com/hashicorp/terraform-provider-hashicups
+
+# Terraform Provider SATO
 
 Run the following command to build the provider
 
 ```shell
-go build -o terraform-provider-hashicups
+go build -o terraform-provider-sato
 ```
 
 ## Test sample configuration
