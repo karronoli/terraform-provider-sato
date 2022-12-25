@@ -85,6 +85,20 @@ func assign_dhcp(hw_addr net.HardwareAddr) {
 	assign(payload)
 }
 
+func reset_network_settings(hw_addr net.HardwareAddr) {
+	mac := strings.Replace(hw_addr.String(), ":", "", -1)
+
+	esc := string(rune(ASCII_ESC))
+	WF := esc + "WF"
+	operations := []string{
+		WF,
+		mac,
+	}
+
+	payload := strings.Join(operations, ",")
+	assign(payload)
+}
+
 func assign(payload string) {
 	remote_endpoint := net.UDPAddr{IP: net.IPv4bcast, Port: REQUEST_PORT}
 	client, err := net.DialUDP("udp", nil, &remote_endpoint)

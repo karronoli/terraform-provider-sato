@@ -195,7 +195,13 @@ func resourceOrderUpdate(ctx context.Context, d *schema.ResourceData, m interfac
 func resourceOrderDelete(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics {
 	var diags diag.Diagnostics
 
-	tflog.Warn(ctx, "No delete feature")
+	mac, err := net.ParseMAC(string(d.Get("hardware_address").(string)))
+
+	if err != nil {
+		panic(err)
+	}
+
+	reset_network_settings(mac)
 	d.SetId("")
 
 	return diags
